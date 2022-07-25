@@ -11,4 +11,20 @@ const ReferenceName = {
   gender: "Gender",
 };
 
-export { BasicDetailsHeadings, ReferenceName };
+const HealthInsuranceQuestion = [
+  {
+    heading: "Are you...",
+    question: "between the ages of 18 and 60½, with no serious weight issues?",
+  },
+  {
+    heading: "In the past 10 years...",
+    question:
+      "have you been treated for any serious health conditions like heart disease, liver problems, HIV, cancer, or schizophrenia?",
+  },
+  {
+    heading: "In the past 10 years..",
+    question: "have you used hard drugs, or frequently used marijuana?",
+  },
+];
+
+export { BasicDetailsHeadings, ReferenceName, HealthInsuranceQuestion };

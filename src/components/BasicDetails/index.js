@@ -6,8 +6,11 @@ import { ContactInfo } from "./ContactInfo";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { ReferenceName } from "../../constants.js";
+import { useNavigate } from "react-router-dom";
 
 export default function BasicDetails() {
+  const navigate = useNavigate();
+
   let [step, setStep] = useState(0);
   let [basicData, setBasicData] = useState({
     firstName: "",
@@ -25,6 +28,8 @@ export default function BasicDetails() {
   function next() {
     if (step < 2 && validate()) {
       setStep(++step);
+    } else if (step == 2) {
+      navigate("../insuranceQuestionnaire");
     }
   }
 
@@ -65,7 +70,7 @@ export default function BasicDetails() {
             {step == 1 && <AddressInfo></AddressInfo>}
             {step == 2 && <ContactInfo></ContactInfo>}
           </div>
-          <div id="submit-btn" class="submit-wrap align-center">
+          <div class="submit-wrap align-center">
             <Button
               variant="contained"
               onClick={next}
