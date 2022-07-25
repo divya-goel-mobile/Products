@@ -1,0 +1,23 @@
+.fullwidth{
+    width: 100%;
+}
+
+.address-info {
+    width : 700px
+}
+
+.contact-info{
+    width : 350px;
+}
+
+@media screen and  (max-width : 700px) {
+    .address-info {
+        width : 350px;
+    }
+}
+
+@media screen and  (max-width : 350px) {
+    .contact-info, .address-info{
+        width : 100%;
+    }
+}

@@ -1,0 +1,56 @@
+.chat-container {
+    margin-top: 55px;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+
+.hTEcPe {
+    font-size: 20px;
+    white-space: normal;
+    padding: 40px;
+}
+
+.dmGYTj {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.fFoQAK {
+    padding: 0px 0px 60px;
+    max-width: 760px;
+    white-space: pre-wrap;
+    color: rgb(74, 74, 74);
+    font-weight: 400;
+    font-family: Merriweather, Georgia, serif;
+    font-size: 36px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+
+
+
+.align-center {
+    text-align: center ;
+}
+
+.mt30 {
+    margin-top: 30px;
+}
+
+
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+
