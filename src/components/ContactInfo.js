@@ -1,81 +1,76 @@
-import { React, useState } from "react";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import Stack from "@mui/material/Stack";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
-import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import FingerprintIcon from "@mui/icons-material/Fingerprint";
+import Email from "@mui/icons-material/Email";
+import ContactPhone from "@mui/icons-material/ContactPhone";
+import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 
-import "../components/styles/ekyc.module.css";
-import "./home.css";
-
-export default function Ekyc() {
-  const navigate = useNavigate();
-
+export default function ContactInfo({
+  contactData,
+  setContactData,
+  error,
+  validate,
+}) {
+  let navigate = useNavigate();
   function next() {
-    // navigate("../plans");
+    if (validate(0)) {
+      navigate("../basicDeails");
+    }
   }
   return (
     <section class="chat-container">
       <span>
         <div class="questions-container user_name">
           <div class=" cGIqAI dmGYTj hTEcPe chat-question-inner user_name  text_single ">
-            <h3 class=" fFoQAK">
-              Provide your identity so that we can know you better
-            </h3>
+            <h3 class=" fFoQAK">fdsfdsfds</h3>
             <form autoComplete="off" class="bcuijq">
               <div class="text-question-container contact-info">
                 <div class="question-form">
                   <div class="input-container  text">
                     <TextField
-                      label="Aadhar Number"
+                      id="filled-basic"
+                      label="Email"
                       variant="outlined"
+                      error={error["email"] != null}
+                      helperText={error["email"]}
                       required
                       fullWidth
+                      spellCheck={false}
+                      onChange={(e) => {
+                        contactData["email"] = e.target.value;
+                        setContactData({ ...contactData });
+                      }}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
-                            <FingerprintIcon />
+                            <Email />
                           </InputAdornment>
-                        ),
-                        endAdornment: (
-                          <IconButton
-                            color="primary"
-                            aria-label="upload picture"
-                            component="label"
-                          >
-                            <input hidden accept="image/*" type="file" />
-                            <PhotoCamera />
-                          </IconButton>
                         ),
                       }}
                     />
                   </div>
                   <div class="input-container  mt30 text">
                     <TextField
-                      label="PAN Number"
-                      variant="outlined"
-                      required
+                      id="filled-basic"
                       fullWidth
+                      label="Mobile No."
+                      variant="outlined"
+                      onChange={(e) => {
+                        contactData["mobile"] = e.target.value;
+                        setContactData({ ...contactData });
+                      }}
+                      error={error["mobile"] != null}
+                      helperText={error["mobile"]}
+                      spellCheck={false}
+                      type="number"
+                      required
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
-                            <PermIdentityIcon />
+                            <ContactPhone />
                           </InputAdornment>
-                        ),
-                        endAdornment: (
-                          <IconButton
-                            color="primary"
-                            aria-label="upload picture"
-                            component="label"
-                          >
-                            <input hidden accept="image/*" type="file" />
-                            <PhotoCamera />
-                          </IconButton>
                         ),
                       }}
                     />
@@ -84,11 +79,10 @@ export default function Ekyc() {
               </div>
             </form>
           </div>
-
           <div class="submit-wrap align-center">
             <Button
-              onClick={next}
               variant="contained"
+              onClick={next}
               color="error"
               endIcon={<SendIcon />}
             >

@@ -1,7 +1,6 @@
 import { React, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -9,21 +8,24 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Checkbox from "@mui/material/Checkbox";
-import IconButton from "@mui/material/IconButton";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import { useNavigate } from "react-router-dom";
 import "./home.css";
 
 export default function Plans() {
   let [plan, setPlan] = useState(-1);
   let [amount, setAmount] = useState(null);
+  let navigate = useNavigate();
   function selectCard(item, index) {
     setPlan(index);
     setAmount(item.amount);
     console.log(item.amount);
+  }
+
+  function buyNow() {
+    navigate("../ekyc");
   }
 
   let plans = [
@@ -137,6 +139,7 @@ export default function Plans() {
                 <div className="premium-amount">Rs {amount}</div>
               </span>
               <Button
+                onClick={buyNow}
                 color="error"
                 sx={{ borderRadius: "20px" }}
                 size="large"

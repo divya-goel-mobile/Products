@@ -20,7 +20,7 @@ export default function InsuranceQuestionnair() {
     if (step < 2) {
       setStep(++step);
     } else {
-      navigate("../ekyc");
+      navigate("../plans");
     }
   }
 
@@ -38,7 +38,7 @@ export default function InsuranceQuestionnair() {
             </p> */}
             <form autocomplete="off" novalidate="" class="bcuijq">
               <div className="question-form" style={{ width: "100%" }}>
-                <div style={{ width: "416px" }} class="faXeTW hLEbcr">
+                <div style={{ "max-width": "416px" }} class="faXeTW hLEbcr">
                   <div style={{ width: "100%" }} class="cZobsb gLeraX">
                     <div class="cGIqAI gQDvru" style={{ opacity: "1" }}>
                       <div height="auto,57" class="ifOqJt kIFXiF">

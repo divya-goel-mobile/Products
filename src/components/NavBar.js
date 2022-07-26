@@ -16,6 +16,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import "./styles/navbar.module.css";
 
 export default function NavBar() {
   const [state, setState] = React.useState(false);
@@ -72,7 +73,12 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            href="../home"
+            variant="h6"
+            component="a"
+            sx={{ flexGrow: 1 }}
+          >
             Prudential
           </Typography>
           <Button color="inherit">Login</Button>
