@@ -1,5 +1,4 @@
 //import Banner from '../../AppBanner/src/components/banner'
-import { Banner } from "@app/appBanner";
 import ProductList from "./components/Home";
 import { BrowserRouter } from "react-router-dom";
 export default function Root(props) {

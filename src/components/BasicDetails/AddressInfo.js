@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 
 export function AddressInfo() {
   return (
-    <form autoComplete="off" className="bcuijq address-info">
+    <form autoComplete="off" className="bcuijq address-info question-form">
       <Grid container spacing={2}>
         <Grid item md={8} xs={12}>
           <TextField label="Street and Number" fullWidth variant="outlined" />

@@ -187,3 +187,20 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
     text-align: right;
     width: 95%;
 }
+
+@media (max-width: 767px)
+{
+    .fFoQAK {
+        font-size: 22px;
+        line-height: 26px;
+        white-space: normal;
+        padding-bottom: 40px;
+    }
+    .chat-container {
+        margin-top: 30px;
+    }
+    .chat-question-inner {
+        padding: 8px 20px 20px 20px;
+    }
+
+}

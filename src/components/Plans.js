@@ -65,7 +65,7 @@ export default function Plans() {
             {name}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {amount}
+            {"₹ " + amount}
           </Typography>
           <Typography variant="h6" component="div">
             Top benefits include:
@@ -91,9 +91,6 @@ export default function Plans() {
             })}
           </List>
         </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
       </>
     );
   };
@@ -102,7 +99,7 @@ export default function Plans() {
       <span>
         <div class="questions-container user_name">
           <div class=" cGIqAI dmGYTj hTEcPe chat-question-inner user_name  text_single ">
-            <h3 class=" fFoQAK">Choose plan which suits you</h3>
+            <h3 class=" fFoQAK">Choose a plan which suits you</h3>
             <Grid container justifyContent="center" spacing={5}>
               {plans.map((elem, index) => {
                 return (

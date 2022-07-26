@@ -33,11 +33,11 @@ export default function InsuranceQuestionnair() {
               Before we begin, let's make sure our health offering is right for
               you
             </h3>
-            <p class="StyledElements__QuestionSubHeader-vnab5o-1 ChatQuestionWrapper__SubHeader-sc-1uvt1f0-3 kDtpEG kkAEss">
+            {/* <p class="StyledElements__QuestionSubHeader-vnab5o-1 ChatQuestionWrapper__SubHeader-sc-1uvt1f0-3 kDtpEG kkAEss">
               Just answer these 3 quick&nbsp;questions
-            </p>
+            </p> */}
             <form autocomplete="off" novalidate="" class="bcuijq">
-              <div style={{ width: "100%" }}>
+              <div className="question-form" style={{ width: "100%" }}>
                 <div style={{ width: "416px" }} class="faXeTW hLEbcr">
                   <div style={{ width: "100%" }} class="cZobsb gLeraX">
                     <div class="cGIqAI gQDvru" style={{ opacity: "1" }}>
