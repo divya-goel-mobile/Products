@@ -10,23 +10,86 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import { useNavigate } from "react-router-dom";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
+
 import "./home.css";
+import "./styles/plans.module.css";
 
 export default function Plans() {
   let [plan, setPlan] = useState(-1);
   let [amount, setAmount] = useState(null);
+  let [planBenefits, setPlanBenefits] = useState([]);
+
   let navigate = useNavigate();
-  function selectCard(item, index) {
-    setPlan(index);
-    setAmount(item.amount);
-    console.log(item.amount);
+  function selectCard(name, amount) {
+    setPlan(name);
+    setAmount(amount);
+    if (name == "Silver") {
+      setPlanBenefits([...silverBenefits]);
+    } else if (name == "Gold") {
+      setPlanBenefits([...goldBenefits]);
+    } else if (name == "Diamond") {
+      setPlanBenefits([...diamondBenefits]);
+    }
   }
 
   function buyNow() {
     navigate("../ekyc");
   }
+
+  function createData(benefitName, cover) {
+    return { benefitName, cover };
+  }
+
+  const silverBenefits = [
+    createData("Kidney dialysis", 100000),
+    createData("HIV / AIDS treatment", 50000),
+    createData("Psychiatric treatment", 25000),
+    createData("Congenital conditions manifesting 60 days after birth", 75000),
+    createData("Hospital cash benefit", 50000),
+    createData("Accidental death and disability", 250000),
+  ];
+  const goldBenefits = [
+    createData("Kidney dialysis", 100000),
+    createData("HIV / AIDS treatment", 50000),
+    createData("Psychiatric treatment", 25000),
+    createData("Congenital conditions manifesting 60 days after birth", 75000),
+    createData("Hospital cash benefit", 50000),
+    createData("Accidental death and disability", 250000),
+    createData("Outpatient limit", 30000),
+    createData("Consultations, medications, diagnostic tests", 30000),
+    createData("Physiotherapy", 40000),
+    createData("Psychiatric and psychological care", 30500),
+    createData("Alternative medicine and treatment", 50000),
+    createData("Routine health checks and vaccinations", "-"),
+  ];
+  const diamondBenefits = [
+    createData("Kidney dialysis", 100000),
+    createData("HIV / AIDS treatment", 50000),
+    createData("Psychiatric treatment", 25000),
+    createData("Congenital conditions manifesting 60 days after birth", 75000),
+    createData("Hospital cash benefit", 50000),
+    createData("Accidental death and disability", 250000),
+    createData("Outpatient limit", 30000),
+    createData("Consultations, medications, diagnostic tests", 30000),
+    createData("Physiotherapy", 40000),
+    createData("Psychiatric and psychological care", 30500),
+    createData("Alternative medicine and treatment", 50000),
+    createData("Routine health checks and vaccinations", "-"),
+    createData("Alternative medicine and treatment", 50000),
+    createData("Frames, lenses and eye checks", "-"),
+  ];
 
   let plans = [
     {
@@ -58,68 +121,163 @@ export default function Plans() {
       amount: 3500,
     },
   ];
+  let benefitsList = [
+    "Hospitalisation charges paid in full",
+    "No Claim Bonus that doubles your annual limit if you do not make any hospitalisation claims for 2 years",
+    "Additional annual limit for accidental claims with Reload Benefit if you exhaust your limit for the year",
+    "Medical evacuation and repatriation, and 24/7 medical advice",
+    "Cancer treatment and organ transplant paid in full",
+    "Pre and post hospitalisation of up to 90 days",
+    "Home nursing cover of up to 30 days",
+    "Parent accommodation of S$250 per night",
+    "Accidental dental treatment paid in full",
+  ];
   const CardWrapper = (props) => {
     let { name, benefits, amount } = props.data;
     return (
       <>
-        <CardContent key={name}>
-          <Typography variant="h5" component="div">
-            {name}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            {"₹ " + amount}
-          </Typography>
-          <Typography variant="h6" component="div">
-            Top benefits include:
-          </Typography>
-          <List
-            sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-          >
-            {benefits.map((value) => {
-              const labelId = `checkbox-list-label-${value}`;
-
-              return (
-                <ListItem key={value}>
-                  <ListItemIcon>
-                    <CheckCircleRoundedIcon></CheckCircleRoundedIcon>
-                  </ListItemIcon>
-                  <ListItemText
-                    color="text.secondary"
-                    id={labelId}
-                    secondary={`Line item ${value}`}
-                  />
-                </ListItem>
-              );
-            })}
-          </List>
-        </CardContent>
+        <Grid key={amount} container>
+          <Grid key={name} sx={3} item class="plan-item">
+            <div class="plan-icon">
+              <HealthAndSafetyIcon />
+            </div>
+          </Grid>
+          <Grid sx={9} item class="combo-label">
+            <h5>Inpatient Benefits</h5>
+            <p>from: S$857.57</p>
+          </Grid>
+        </Grid>
       </>
     );
   };
   return (
-    <section class="chat-container">
+    <section class="plans-layout chat-container">
       <span>
-        <div class="questions-container user_name">
-          <div class=" cGIqAI dmGYTj hTEcPe chat-question-inner user_name  text_single ">
-            <h3 class=" fFoQAK">Choose a plan which suits you</h3>
-            <Grid container justifyContent="center" spacing={5}>
-              {plans.map((elem, index) => {
-                return (
-                  <Grid item key={index}>
-                    <div className={plan == index ? "active-item" : null}>
-                      <Card
-                        style={{ width: "300px", cursor: "pointer" }}
-                        onClick={() => selectCard(elem, index)}
-                        variant="outlined"
-                      >
-                        <CardWrapper data={elem}></CardWrapper>
-                      </Card>
-                    </div>
-                  </Grid>
-                );
-              })}
+        <div class="layout mt-30 text-center column">
+          <h2 class="text-center mb-2">I want to cover</h2>
+          <p>select the items you want in your plan</p>
+        </div>
+        <div className="plan-list">
+          <Grid
+            container
+            sx={{
+              width: "400px",
+            }}
+            justifyContent="center"
+            spacing={5}
+          >
+            <Grid
+              onClick={() => selectCard("Silver", 1500)}
+              xs={4}
+              item
+              className="plan-item"
+            >
+              <div class="plan-icon">
+                <HealthAndSafetyIcon
+                  className={plan == "Silver" ? "active-plan" : null}
+                />
+              </div>
             </Grid>
+            <Grid xs={8} item className="combo-label">
+              <h5>Silver Plan</h5>
+              <p>₹ 1500</p>
+            </Grid>
+            <Grid
+              onClick={() => selectCard("Gold", 2500)}
+              xs={4}
+              item
+              className="plan-item"
+            >
+              <div class="plan-icon">
+                <LocalHospitalIcon
+                  className={plan == "Gold" ? "active-plan" : null}
+                />
+              </div>
+            </Grid>
+            <Grid xs={8} item className="combo-label">
+              <h5>Gold Plan</h5>
+              <p>₹ 2500</p>
+            </Grid>
+            <Grid
+              onClick={() => selectCard("Diamond", 3500)}
+              xs={4}
+              item
+              className="plan-item"
+            >
+              <div class="plan-icon">
+                <MedicalInformationIcon
+                  className={plan == "Diamond" ? "active-plan" : null}
+                />
+              </div>
+            </Grid>
+            <Grid xs={8} item className="combo-label">
+              <h5>Diamond Plan</h5>
+              <p>₹ 3500</p>
+            </Grid>
+          </Grid>
+        </div>
+
+        {amount && (
+          <div className="mt-30 selected-benefits">
+            <div class="cp-col-policy">{`${plan} plan benefits`}</div>
+            <TableContainer component={Paper}>
+              <Table sx={{}} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Benefit</TableCell>
+                    <TableCell align="right">Coverage</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {planBenefits.map((row, index) => (
+                    <TableRow
+                      key={index}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.benefitName}
+                      </TableCell>
+                      <TableCell align="right">{row.cover}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </div>
+        )}
+
+        <div className="mt-30 commmon-benefits">
+          <div class="cp-col-policy">Benefits across all plans</div>
+
+          <summary class="cp-col-benefit">
+            <div class="cp-col">
+              <List
+                sx={{
+                  width: "100%",
+                  bgcolor: "background.paper",
+                }}
+              >
+                {benefitsList.map((value) => {
+                  const labelId = `checkbox-list-label-${value}`;
+
+                  return (
+                    <ListItem key={value}>
+                      <ListItemIcon>
+                        <CheckCircleRoundedIcon
+                          style={{ color: "#ed1b2e" }}
+                        ></CheckCircleRoundedIcon>
+                      </ListItemIcon>
+                      <ListItemText
+                        color="text.secondary"
+                        id={labelId}
+                        secondary={`${value}`}
+                      />
+                    </ListItem>
+                  );
+                })}
+              </List>
+            </div>
+          </summary>
         </div>
       </span>
       {amount && (
