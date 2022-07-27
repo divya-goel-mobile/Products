@@ -6,6 +6,10 @@ import InsuranceQuestionnair from "./InsuranceQuestionnaire";
 import Plans from "./Plans";
 import Ekyc from "./Ekyc";
 import { ReferenceName } from "../constants.js";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import img from "../assets/images/video-divider-white.png";
 
 import {
   BrowserRouter,
@@ -71,6 +75,12 @@ export default function Home() {
   return (
     <>
       <NavBar />
+      <section data-v-70391ab4="" class="mb-4 banner primary">
+        <h1 data-v-70391ab4="" class="top-heading">
+          get a quote in seconds
+        </h1>
+        <img src={img} class="image-divider" />
+      </section>
       <Routes>
         <Route path="/products">
           <Route

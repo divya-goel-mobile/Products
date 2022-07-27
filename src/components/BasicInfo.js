@@ -38,7 +38,10 @@ export default function BasicInfo({
       <span>
         <div class="questions-container user_name">
           <div class=" cGIqAI dmGYTj hTEcPe chat-question-inner user_name  text_single ">
-            <h3 class=" fFoQAK">fdsfdsfds</h3>
+            <h3 class=" fFoQAK">
+              Great! Applying for health insurance takes only 5 minutes. Ready
+              to go?
+            </h3>
             <form autoComplete="off" className="bcuijq">
               <div className="text-question-container">
                 <div className="question-form">

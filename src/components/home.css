@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 .chat-container {
     margin-top: 55px;
     padding-bottom: 30px;
@@ -24,7 +26,6 @@
     white-space: pre-wrap;
     color: rgb(74, 74, 74);
     font-weight: 400;
-    font-family: Merriweather, Georgia, serif;
     font-size: 36px;
     line-height: 50px;
     text-align: center;
@@ -53,19 +54,35 @@
     background: 0 0;
 } */
 
-html , body ,.products h3, .products header{
+html , body, .products header, .products h3,.products h1, .products h5, .products p{
     margin: 0;
 }
 
+
+/* .products h3,.products h1{
+    margin: 0;
+    padding: 0;
+    border: 0;
+} */
+
 .products{
-    font-family:  Muli, sans-serif
+    font-family:  "Open Sans", sans-serif
+
 }
+
+.plans-layout .MuiGrid-container .MuiGrid-item {
+    margin:auto !important
+}
+
+.plans-layout .MuiGrid-container {
+    margin-top: 0px;
+}
+
 
 
 
 .kDtpEG {
     font-weight: 400;
-    font-family: Lato, "Helvetica Neue", Arial, sans-serif;
     line-height: 22px;
     max-width: 650px;
     font-size: 16px;
@@ -104,7 +121,6 @@ html , body ,.products h3, .products header{
 }
 .DaHEG {
     line-height: 1.3;
-    font-family: Lato, "Helvetica Neue", Arial, sans-serif;
     font-weight: 700;
     text-align: center;
     outline: none;
@@ -148,7 +164,6 @@ html , body ,.products h3, .products header{
 
 .XAgdT {
     line-height: 1.3;
-    font-family: Lato, "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
     font-weight: 700;
     text-align: left;
@@ -158,7 +173,6 @@ html , body ,.products h3, .products header{
 .gQIPbk {
     line-height: 1.3;
     font-weight: 400;
-    font-family: Lato, "Helvetica Neue", Arial, sans-serif;
     font-size: 15px;
     text-align: left;
 }
@@ -195,6 +209,109 @@ html , body ,.products h3, .products header{
     width: 95%;
 }
 
+.image-divider {
+    width: 100%;
+    margin-bottom: -5px;
+    height: 80px;
+
+}
+
+.products .banner {
+    background-color: #ed1b2e;
+}
+
+.top-heading{
+    font-size : 30px;
+    font-weight: 500;
+    padding: 22px 5px 5px 5px;
+    color: #fff;
+    margin-bottom: 0px;
+    text-align: center;
+}
+.text-center{
+    text-align: center;
+}
+
+
+
+.combo-label h5{
+    font-size: 20px;
+    font-weight: 500;
+}
+.combo-label p{
+    font-size: 14px;
+    color: #888;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+
+.plan-icon svg {
+    cursor: pointer;
+    width: 75px;
+    height: 75px;
+}
+
+
+.plan-list{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.commmon-benefits, .selected-benefits{
+    padding: 20px;
+    width: 80%;
+    margin: auto;
+    max-width: 500px;
+}
+
+.selected-benefits {
+}
+
+.cp-col-policy {
+    height: 30px;
+    background-color:  #ed1b2e;
+    color: white;
+    font-size: 16px;
+    padding: 4px 0px;
+    padding-left: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.selected-benefits .MuiTableCell-root {
+font-size: 14px;
+}
+
+.selected-benefits .MuiTableRow-root .MuiTableCell-head{
+    font-weight: 600;    
+}
+
+.active-plan {
+    color:#ed1b2e;
+}
+
+.mt-30{
+    margin-top: 30px;
+}
+
+
+.cp-col-benefit .MuiTypography-root {
+    font-size: 14px;
+}
+
+
+/* .input-container .MuiTextField-root label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.input-container .MuiFormControl-root label{
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+
+} */
+
 @media (max-width: 767px)
 {
     .fFoQAK {
@@ -208,6 +325,12 @@ html , body ,.products h3, .products header{
     }
     .chat-question-inner {
         padding: 8px 20px 20px 20px;
+    }
+    .image-divider {
+        height: 20px;
+    }
+    .commmon-benefits, .selected-benefits{
+        width: auto;
     }
 
 }
