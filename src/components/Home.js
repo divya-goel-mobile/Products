@@ -47,11 +47,12 @@ export default function Home() {
     mobile: null,
   });
 
-  function validate(step) {
+  function validate(step, keyParam) {
     let data = basicData;
     if (step == 0) data = contactData;
     let isError = false;
-    for (let key in data) {
+
+    function validateField(key) {
       if (data[key] == "" && key != "lastName") {
         error[key] = `${ReferenceName[key]} can not be blank`;
         isError = true;
@@ -65,8 +66,24 @@ export default function Home() {
       ) {
         error[key] = `Not a valid email address`;
         isError = true;
+      } else if (
+        key == "mobile" &&
+        !String(data[key])
+          .toLowerCase()
+          .match(/^[0]?[6789]\d{9}$/)
+      ) {
+        error[key] = `Not a valid mobile  number`;
+        isError = true;
       } else error[key] = null;
     }
+    if (keyParam == undefined) {
+      for (let key in data) {
+        validateField(key);
+      }
+    } else {
+      validateField(keyParam);
+    }
+
     setError({ ...error });
     if (isError) return false;
     else return true;
@@ -77,8 +94,13 @@ export default function Home() {
       <NavBar />
       <section data-v-70391ab4="" class="mb-4 banner primary">
         <h1 data-v-70391ab4="" class="top-heading">
-          get a quote in seconds
+          Get protected in mins
         </h1>
+        <div class="promo-div ab-block banner-container text-center">
+          Use <div class="code">USEPHIL</div> to get ₹300 Capitavoucher with a
+          min premium of ₹1000 only.
+          <br /> Promo ends in: <span class="countdown">4 days</span>
+        </div>
         <img src={img} class="image-divider" />
       </section>
       <Routes>

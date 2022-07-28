@@ -95,7 +95,7 @@ export default function Plans() {
     {
       name: "Plan A",
       benefits: ["Benefits 1", "Benefits 2", "Benefits 3", "Benefits 4"],
-      amount: 1500,
+      amount: "1,500",
     },
     {
       name: "Plan B",
@@ -106,7 +106,7 @@ export default function Plans() {
         "Benefits 4",
         "Benefits 5",
       ],
-      amount: 2500,
+      amount: "2,500",
     },
     {
       name: "Plan C",
@@ -118,7 +118,7 @@ export default function Plans() {
         "Benefits 5",
         "Benefits 6",
       ],
-      amount: 3500,
+      amount: "3,500",
     },
   ];
   let benefitsList = [
@@ -167,7 +167,7 @@ export default function Plans() {
             spacing={5}
           >
             <Grid
-              onClick={() => selectCard("Silver", 1500)}
+              onClick={() => selectCard("Silver", "1,500")}
               xs={4}
               item
               className="plan-item"
@@ -180,10 +180,13 @@ export default function Plans() {
             </Grid>
             <Grid xs={8} item className="combo-label">
               <h5>Silver Plan</h5>
-              <p>₹ 1500</p>
+              <p>₹ 1,500</p>
+              <p> Hospital cash benefit of ₹50,000 </p>
+              <p> Accidental benefit of ₹5,00,000 </p>
+              <a> View more benefits...</a>
             </Grid>
             <Grid
-              onClick={() => selectCard("Gold", 2500)}
+              onClick={() => selectCard("Gold", "2,500")}
               xs={4}
               item
               className="plan-item"
@@ -196,10 +199,10 @@ export default function Plans() {
             </Grid>
             <Grid xs={8} item className="combo-label">
               <h5>Gold Plan</h5>
-              <p>₹ 2500</p>
+              <p>₹ 2,500</p>
             </Grid>
             <Grid
-              onClick={() => selectCard("Diamond", 3500)}
+              onClick={() => selectCard("Diamond", "3,500")}
               xs={4}
               item
               className="plan-item"
@@ -212,7 +215,7 @@ export default function Plans() {
             </Grid>
             <Grid xs={8} item className="combo-label">
               <h5>Diamond Plan</h5>
-              <p>₹ 3500</p>
+              <p>₹ 3,500</p>
             </Grid>
           </Grid>
         </div>

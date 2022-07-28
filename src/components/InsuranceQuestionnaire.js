@@ -17,7 +17,7 @@ export default function InsuranceQuestionnair() {
   }
 
   function next() {
-    if (step < 2) {
+    if (step < HealthInsuranceQuestion.length - 1) {
       setStep(++step);
     } else {
       navigate("../plans");

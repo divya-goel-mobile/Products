@@ -55,6 +55,9 @@ export default function BasicInfo({
                         basicData["firstName"] = e.target.value;
                         setBasicData({ ...basicData });
                       }}
+                      onBlur={(e) => {
+                        validate(1, "firstName");
+                      }}
                       required
                       fullWidth
                       spellCheck={false}
@@ -62,7 +65,7 @@ export default function BasicInfo({
                   </div>
                   <div class="input-container  mt30 text">
                     <TextField
-                      label="Last Name"
+                      label="Middle and Last Name"
                       variant="outlined"
                       error={error["lastName"] != null}
                       helperText={error["lastName"]}

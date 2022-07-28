@@ -8,23 +8,32 @@ const ReferenceName = {
   lastName: "Last Name",
   dob: "Date of Birth",
   gender: "Gender",
-  mobile: "Mobile",
+  mobile: "Mobile number",
   email: "Email",
 };
 
 const HealthInsuranceQuestion = [
   {
-    heading: "Are you...",
-    question: "between the ages of 18 and 60½, with no serious weight issues?",
+    heading: "Have you ever been...",
+    question: "Diagnosed with cancer?",
+  },
+  {
+    heading: "Have you ever...",
+    question: "Used any form of tobacco or nicotine products?",
+  },
+  {
+    heading: "Have you been...",
+    question:
+      "diagnosed with having protein and/or microalbumin in your urine?",
   },
   {
     heading: "In the past 10 years...",
     question:
-      "have you been treated for any serious health conditions like heart disease, liver problems, HIV, cancer, or schizophrenia?",
+      "Have you been treated for any serious health conditions like heart disease, liver problems, HIV, cancer, or schizophrenia?",
   },
   {
     heading: "In the past 10 years..",
-    question: "have you used hard drugs, or frequently used marijuana?",
+    question: "Have you used hard drugs, or frequently used marijuana?",
   },
 ];
 

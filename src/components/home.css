@@ -221,13 +221,25 @@ html , body, .products header, .products h3,.products h1, .products h5, .product
 }
 
 .top-heading{
-    font-size : 30px;
+    font-size : 40px;
     font-weight: 500;
     padding: 22px 5px 5px 5px;
     color: #fff;
     margin-bottom: 0px;
     text-align: center;
 }
+
+.promo-div{
+    color: #fff;
+    font-size: 15px;
+}
+
+.promo-div .code{
+    font-weight: 600;
+    display: inline;
+    font-size: 17px;
+}
+
 .text-center{
     text-align: center;
 }
@@ -303,6 +315,22 @@ font-size: 14px;
 }
 
 
+.products input::-webkit-outer-spin-button,
+.products input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+.prefix-code{
+    margin-left: 5px;
+}
+
 /* .input-container .MuiTextField-root label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -331,6 +359,10 @@ font-size: 14px;
     }
     .commmon-benefits, .selected-benefits{
         width: auto;
+    }
+    .top-heading{
+        font-size : 30px;
+        
     }
 
 }

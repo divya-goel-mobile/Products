@@ -6,6 +6,7 @@ import ContactPhone from "@mui/icons-material/ContactPhone";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
+import "./styles/contactinfo.module.css";
 
 export default function ContactInfo({
   contactData,
@@ -25,7 +26,8 @@ export default function ContactInfo({
         <div class="questions-container user_name">
           <div class=" cGIqAI dmGYTj hTEcPe chat-question-inner user_name  text_single ">
             <h3 class=" fFoQAK">
-              Lets get you an account so you can come back your quote later
+              Lets get you an account so you can come back to your application
+              later...
             </h3>
             <form autoComplete="off" class="bcuijq">
               <div class="text-question-container contact-info">
@@ -40,6 +42,9 @@ export default function ContactInfo({
                       required
                       fullWidth
                       spellCheck={false}
+                      onBlur={(e) => {
+                        validate(0, "email");
+                      }}
                       onChange={(e) => {
                         contactData["email"] = e.target.value;
                         setContactData({ ...contactData });
@@ -63,15 +68,22 @@ export default function ContactInfo({
                         contactData["mobile"] = e.target.value;
                         setContactData({ ...contactData });
                       }}
+                      onBlur={(e) => {
+                        validate(0, "mobile");
+                      }}
                       error={error["mobile"] != null}
                       helperText={error["mobile"]}
                       spellCheck={false}
                       type="number"
                       required
+                      inputProps={{
+                        maxlength: 13,
+                      }}
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
-                            <ContactPhone />
+                            <ContactPhone />{" "}
+                            <span className="prefix-code">+91</span>
                           </InputAdornment>
                         ),
                       }}
