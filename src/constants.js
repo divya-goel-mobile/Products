@@ -14,10 +14,6 @@ const ReferenceName = {
 
 const HealthInsuranceQuestion = [
   {
-    heading: "Have you ever been...",
-    question: "Diagnosed with cancer?",
-  },
-  {
     heading: "Have you ever...",
     question: "Used any form of tobacco or nicotine products?",
   },

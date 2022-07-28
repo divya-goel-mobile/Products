@@ -132,6 +132,37 @@ export default function Plans() {
     "Parent accommodation of S$250 per night",
     "Accidental dental treatment paid in full",
   ];
+
+  const PlanBenefitsWrapper = () => {
+    return (
+      <div className="mt-30 selected-benefits">
+        <div class="cp-col-policy">{`${plan} plan benefits`}</div>
+        <TableContainer component={Paper}>
+          <Table sx={{}} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Benefit</TableCell>
+                <TableCell align="right">Coverage</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {planBenefits.map((row, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.benefitName}
+                  </TableCell>
+                  <TableCell align="right">{row.cover}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
+    );
+  };
   const CardWrapper = (props) => {
     let { name, benefits, amount } = props.data;
     return (
@@ -161,7 +192,7 @@ export default function Plans() {
           <Grid
             container
             sx={{
-              width: "400px",
+              maxWidth: "500px",
             }}
             justifyContent="center"
             spacing={5}
@@ -178,13 +209,27 @@ export default function Plans() {
                 />
               </div>
             </Grid>
-            <Grid xs={8} item className="combo-label">
+            <Grid
+              xs={8}
+              onClick={() => selectCard("Silver", "1,500")}
+              item
+              className="combo-label"
+            >
               <h5>Silver Plan</h5>
               <p>₹ 1,500</p>
-              <p> Hospital cash benefit of ₹50,000 </p>
-              <p> Accidental benefit of ₹5,00,000 </p>
-              <a> View more benefits...</a>
+              <p className="plan-benefits">Hospital cash benefit of ₹50,000 </p>
+              <p className="plan-benefits"> Accidental benefit of ₹5,00,000 </p>
+              <div className="more-benefit">
+                {`+${silverBenefits.length - 2}`} more benefits...
+              </div>
             </Grid>
+
+            {amount && plan == "Silver" && (
+              <Grid item xs={12}>
+                <PlanBenefitsWrapper />
+              </Grid>
+            )}
+
             <Grid
               onClick={() => selectCard("Gold", "2,500")}
               xs={4}
@@ -197,10 +242,27 @@ export default function Plans() {
                 />
               </div>
             </Grid>
-            <Grid xs={8} item className="combo-label">
+
+            <Grid
+              onClick={() => selectCard("Gold", "2,500")}
+              xs={8}
+              item
+              className="combo-label"
+            >
               <h5>Gold Plan</h5>
               <p>₹ 2,500</p>
+              <p className="plan-benefits">Hospital cash benefit of ₹50,000 </p>
+              <p className="plan-benefits"> Accidental benefit of ₹5,00,000 </p>
+              <div className="more-benefit">
+                {`+${goldBenefits.length - 2}`} more benefits...
+              </div>
             </Grid>
+            {amount && plan == "Gold" && (
+              <Grid item xs={12}>
+                <PlanBenefitsWrapper />
+              </Grid>
+            )}
+
             <Grid
               onClick={() => selectCard("Diamond", "3,500")}
               xs={4}
@@ -213,41 +275,28 @@ export default function Plans() {
                 />
               </div>
             </Grid>
-            <Grid xs={8} item className="combo-label">
+
+            <Grid
+              onClick={() => selectCard("Diamond", "3,500")}
+              xs={8}
+              item
+              className="combo-label"
+            >
               <h5>Diamond Plan</h5>
               <p>₹ 3,500</p>
+              <p className="plan-benefits">Hospital cash benefit of ₹50,000 </p>
+              <p className="plan-benefits"> Accidental benefit of ₹5,00,000 </p>
+              <div className="more-benefit">
+                {`+${diamondBenefits.length - 2}`} more benefits...
+              </div>
             </Grid>
+            {amount && plan == "Diamond" && (
+              <Grid item xs={12}>
+                <PlanBenefitsWrapper />
+              </Grid>
+            )}
           </Grid>
         </div>
-
-        {amount && (
-          <div className="mt-30 selected-benefits">
-            <div class="cp-col-policy">{`${plan} plan benefits`}</div>
-            <TableContainer component={Paper}>
-              <Table sx={{}} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Benefit</TableCell>
-                    <TableCell align="right">Coverage</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {planBenefits.map((row, index) => (
-                    <TableRow
-                      key={index}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell component="th" scope="row">
-                        {row.benefitName}
-                      </TableCell>
-                      <TableCell align="right">{row.cover}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-        )}
 
         <div className="mt-30 commmon-benefits">
           <div class="cp-col-policy">Benefits across all plans</div>

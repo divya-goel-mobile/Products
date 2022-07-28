@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" '); */
 
 .chat-container {
     margin-top: 55px;
@@ -278,7 +278,10 @@ html , body, .products header, .products h3,.products h1, .products h5, .product
     max-width: 500px;
 }
 
-.selected-benefits {
+.more-benefit {
+    color: #ed1b2e;
+    text-decoration: underline;
+    font-weight: 600;
 }
 
 .cp-col-policy {
@@ -339,6 +342,13 @@ input[type=number] {
     font-family: Verdana, Geneva, Tahoma, sans-serif !important;
 
 } */
+.combo-label{
+    cursor: pointer;
+}
+
+.combo-label .plan-benefits{
+    margin-bottom: 0px;
+}
 
 @media (max-width: 767px)
 {
