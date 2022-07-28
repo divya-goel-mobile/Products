@@ -16,7 +16,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import "./styles/navbar.module.css";
+import navbar from "./styles/navbar.module.css";
 
 export default function NavBar() {
   const [state, setState] = React.useState(false);
@@ -62,7 +62,7 @@ export default function NavBar() {
   return (
     <div>
       <AppBar position="static" sx={{ backgroundColor: "#ed1b2e" }}>
-        <Toolbar>
+        <Toolbar className={navbar.toolbar}>
           <IconButton
             size="large"
             edge="start"

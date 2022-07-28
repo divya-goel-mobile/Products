@@ -10,7 +10,8 @@ import FingerprintIcon from "@mui/icons-material/Fingerprint";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 
-import "../components/styles/ekyc.module.css";
+import "./ekyc.scss";
+import ekyc from "./ekyc.module.css";
 import "./home.css";
 
 export default function Ekyc() {
@@ -28,7 +29,7 @@ export default function Ekyc() {
               Provide your identity so that we can know you better
             </h3>
             <form autoComplete="off" class="bcuijq">
-              <div class="text-question-container contact-info">
+              <div class="text-question-container contactInfo">
                 <div class="question-form">
                   <div class="input-container  text">
                     <TextField

@@ -6,7 +6,7 @@ import ContactPhone from "@mui/icons-material/ContactPhone";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
-import "./styles/contactinfo.module.css";
+import style from "./styles/basic-info.module.css";
 
 export default function ContactInfo({
   contactData,
@@ -29,69 +29,66 @@ export default function ContactInfo({
               Lets get you an account so you can come back to your application
               later...
             </h3>
-            <form autoComplete="off" class="bcuijq">
-              <div class="text-question-container contact-info">
-                <div class="question-form">
-                  <div class="input-container  text">
-                    <TextField
-                      id="filled-basic"
-                      label="Email"
-                      variant="outlined"
-                      error={error["email"] != null}
-                      helperText={error["email"]}
-                      required
-                      fullWidth
-                      spellCheck={false}
-                      onBlur={(e) => {
-                        validate(0, "email");
-                      }}
-                      onChange={(e) => {
-                        contactData["email"] = e.target.value;
-                        setContactData({ ...contactData });
-                      }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <Email />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                  <div class="input-container  mt30 text">
-                    <TextField
-                      id="filled-basic"
-                      fullWidth
-                      label="Mobile No."
-                      variant="outlined"
-                      onChange={(e) => {
-                        contactData["mobile"] = e.target.value;
-                        setContactData({ ...contactData });
-                      }}
-                      onBlur={(e) => {
-                        validate(0, "mobile");
-                      }}
-                      error={error["mobile"] != null}
-                      helperText={error["mobile"]}
-                      spellCheck={false}
-                      type="number"
-                      required
-                      inputProps={{
-                        maxlength: 13,
-                      }}
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <ContactPhone />{" "}
-                            <span className="prefix-code">+91</span>
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                </div>
+
+            <div className={style.basicDetailContainer}>
+              <div class="input-container  text">
+                <TextField
+                  id="filled-basic"
+                  label="Email"
+                  variant="outlined"
+                  error={error["email"] != null}
+                  helperText={error["email"]}
+                  required
+                  fullWidth
+                  spellCheck={false}
+                  onBlur={(e) => {
+                    validate(0, "email");
+                  }}
+                  onChange={(e) => {
+                    contactData["email"] = e.target.value;
+                    setContactData({ ...contactData });
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Email />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
               </div>
-            </form>
+              <div class="input-container  mt30 text">
+                <TextField
+                  id="filled-basic"
+                  fullWidth
+                  label="Mobile No."
+                  variant="outlined"
+                  onChange={(e) => {
+                    contactData["mobile"] = e.target.value;
+                    setContactData({ ...contactData });
+                  }}
+                  onBlur={(e) => {
+                    validate(0, "mobile");
+                  }}
+                  error={error["mobile"] != null}
+                  helperText={error["mobile"]}
+                  spellCheck={false}
+                  type="number"
+                  required
+                  inputProps={{
+                    maxlength: 13,
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <ContactPhone />{" "}
+                        <span className="prefix-code">+91</span>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
+            </div>
           </div>
           <div class="submit-wrap align-center">
             <Button

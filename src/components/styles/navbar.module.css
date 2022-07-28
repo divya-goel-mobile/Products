@@ -1,10 +1,10 @@
-a:link {
+.toolbar a:link {
     text-decoration: inherit;
     color: inherit;
     cursor: pointer;
 }
 
-a:visited {
+.toolbar a:visited {
     text-decoration: inherit;
     color: inherit;
     cursor: pointer;
