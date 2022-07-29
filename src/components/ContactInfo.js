@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Email from "@mui/icons-material/Email";
@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 import style from "./styles/basic-info.module.css";
+import OtpInputBox from "./common/OtpInput";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
 export default function ContactInfo({
   contactData,
@@ -14,9 +16,29 @@ export default function ContactInfo({
   error,
   validate,
 }) {
+  let [isEmailOtpActive, setEmailOtpActive] = useState(false);
+  let [isMobileOtpActive, setMobileOtpActive] = useState(false);
+  let [isAadharOtpActive, setAadharOtpActive] = useState(false);
+
+  let [isEmailVarified, setEmailVerified] = useState(false);
+  let [isMobileVarified, setMobileVerified] = useState(false);
+  let [isAadharVerified, setAadharVerified] = useState(false);
+
+  let [emailOtp, setEmailOtp] = useState("");
+  let [mobileOtp, setMobileOtp] = useState("");
+  let [aadharOtp, setAadharOtp] = useState("");
+
+  useEffect(() => {
+    if (emailOtp.length == 4) setEmailVerified(true);
+  }, [emailOtp]);
+
+  useEffect(() => {
+    if (mobileOtp.length == 4) setMobileVerified(true);
+  }, [mobileOtp]);
+
   let navigate = useNavigate();
   function next() {
-    if (validate(0)) {
+    if (isMobileVarified && isEmailVarified) {
       navigate("../basicDeails");
     }
   }
@@ -55,8 +77,30 @@ export default function ContactInfo({
                         <Email />
                       </InputAdornment>
                     ),
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        {!isEmailVarified ? (
+                          <Button
+                            onClick={() => {
+                              if (validate(0, "email")) setEmailOtpActive(true);
+                            }}
+                            sx={{
+                              fontSize: "12px",
+                              color: "rgba(0, 0, 0, 0.6)",
+                            }}
+                          >
+                            verify
+                          </Button>
+                        ) : (
+                          <CheckCircleRoundedIcon sx={{ color: "green" }} />
+                        )}
+                      </InputAdornment>
+                    ),
                   }}
                 />
+                {isEmailOtpActive && !isEmailVarified && (
+                  <OtpInputBox callback={setEmailOtp}></OtpInputBox>
+                )}
               </div>
               <div class="input-container  mt30 text">
                 <TextField
@@ -87,8 +131,31 @@ export default function ContactInfo({
                         <span className="prefix-code">+91</span>
                       </InputAdornment>
                     ),
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        {!isMobileVarified ? (
+                          <Button
+                            onClick={() => {
+                              if (validate(0, "mobile"))
+                                setMobileOtpActive(true);
+                            }}
+                            sx={{
+                              fontSize: "12px",
+                              color: "rgba(0, 0, 0, 0.6)",
+                            }}
+                          >
+                            verify
+                          </Button>
+                        ) : (
+                          <CheckCircleRoundedIcon sx={{ color: "green" }} />
+                        )}
+                      </InputAdornment>
+                    ),
                   }}
                 />
+                {isMobileOtpActive && !isMobileVarified && (
+                  <OtpInputBox callback={setMobileOtp}></OtpInputBox>
+                )}
               </div>
             </div>
           </div>

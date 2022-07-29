@@ -30,8 +30,7 @@ export default function InsuranceQuestionnair() {
         <div class="questions-container user_name">
           <div class=" cGIqAI dmGYTj hTEcPe chat-question-inner user_name  text_single ">
             <h3 class=" fFoQAK">
-              Before we begin, let's make sure our health offering is right for
-              you
+              Let's make sure our health offering is right for you
             </h3>
             {/* <p class="StyledElements__QuestionSubHeader-vnab5o-1 ChatQuestionWrapper__SubHeader-sc-1uvt1f0-3 kDtpEG kkAEss">
               Just answer these 3 quick&nbsp;questions

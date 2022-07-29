@@ -27,12 +27,17 @@ import "./home.css";
 import "./styles/plans.module.css";
 
 export default function Plans() {
-  let [plan, setPlan] = useState(-1);
+  let [plan, setPlan] = useState("");
   let [amount, setAmount] = useState(null);
   let [planBenefits, setPlanBenefits] = useState([]);
 
   let navigate = useNavigate();
   function selectCard(name, amount) {
+    if (name == plan) {
+      setPlan("");
+      setAmount(null);
+      return;
+    }
     setPlan(name);
     setAmount(amount);
     if (name == "Silver") {
@@ -91,36 +96,6 @@ export default function Plans() {
     createData("Frames, lenses and eye checks", "-"),
   ];
 
-  let plans = [
-    {
-      name: "Plan A",
-      benefits: ["Benefits 1", "Benefits 2", "Benefits 3", "Benefits 4"],
-      amount: "1,500",
-    },
-    {
-      name: "Plan B",
-      benefits: [
-        "Benefits 1",
-        "Benefits 2",
-        "Benefits 3",
-        "Benefits 4",
-        "Benefits 5",
-      ],
-      amount: "2,500",
-    },
-    {
-      name: "Plan C",
-      benefits: [
-        "Benefits 1",
-        "Benefits 2",
-        "Benefits 3",
-        "Benefits 4",
-        "Benefits 5",
-        "Benefits 6",
-      ],
-      amount: "3,500",
-    },
-  ];
   let benefitsList = [
     "Hospitalisation charges paid in full",
     "No Claim Bonus that doubles your annual limit if you do not make any hospitalisation claims for 2 years",
@@ -186,7 +161,7 @@ export default function Plans() {
       <span>
         <div class="layout mt-30 text-center column">
           <h2 class="text-center mb-2">I want to cover</h2>
-          <p>select the items you want in your plan</p>
+          <p>select the plan which is most suitable for you</p>
         </div>
         <div className="plan-list">
           <Grid
@@ -218,7 +193,7 @@ export default function Plans() {
               <h5>Silver Plan</h5>
               <p>₹ 1,500</p>
               <p className="plan-benefits">Hospital cash benefit of ₹50,000 </p>
-              <p className="plan-benefits"> Accidental benefit of ₹5,00,000 </p>
+              <p className="plan-benefits"> Accidental benefit of ₹2,50,000 </p>
               <div className="more-benefit">
                 {`+${silverBenefits.length - 2}`} more benefits...
               </div>
@@ -251,7 +226,9 @@ export default function Plans() {
             >
               <h5>Gold Plan</h5>
               <p>₹ 2,500</p>
-              <p className="plan-benefits">Hospital cash benefit of ₹50,000 </p>
+              <p className="plan-benefits">
+                Hospital cash benefit of ₹1,00,000{" "}
+              </p>
               <p className="plan-benefits"> Accidental benefit of ₹5,00,000 </p>
               <div className="more-benefit">
                 {`+${goldBenefits.length - 2}`} more benefits...
@@ -284,8 +261,10 @@ export default function Plans() {
             >
               <h5>Diamond Plan</h5>
               <p>₹ 3,500</p>
-              <p className="plan-benefits">Hospital cash benefit of ₹50,000 </p>
-              <p className="plan-benefits"> Accidental benefit of ₹5,00,000 </p>
+              <p className="plan-benefits">
+                Hospital cash benefit of ₹1,50,000
+              </p>
+              <p className="plan-benefits"> Accidental benefit of ₹7,50,000 </p>
               <div className="more-benefit">
                 {`+${diamondBenefits.length - 2}`} more benefits...
               </div>

@@ -98,8 +98,8 @@ export default function Home() {
           Get protected in mins
         </h1>
         <div class="promo-div ab-block banner-container text-center">
-          Use <div class="code">USEPHIL</div> to get ₹300 Capitavoucher with a
-          min premium of ₹1000 only.
+          Use <div class="code">PHIL</div> to get 25% off with a min premium of
+          ₹1000 only.
           <br /> Promo ends in: <span class="countdown">4 days</span>
         </div>
         <img src={img} class="image-divider" />
