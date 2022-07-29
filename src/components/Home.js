@@ -10,6 +10,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import img from "../assets/images/video-divider-white.png";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 import {
   BrowserRouter,
@@ -102,6 +103,14 @@ export default function Home() {
           <br /> Promo ends in: <span class="countdown">4 days</span>
         </div>
         <img src={img} class="image-divider" />
+        {/* <ChevronLeftIcon
+          sx={{
+            position: "absolute",
+            top: "50px",
+          }}
+        >
+          {" "}
+        </ChevronLeftIcon> */}
       </section>
       <Routes>
         <Route path="/products">

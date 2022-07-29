@@ -19,6 +19,9 @@
     font-size: 14px;
     text-align: center;
 }
+.genderList div{
+    cursor: pointer;
+}
 
 .active{
     color:#ed1b2e;

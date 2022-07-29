@@ -55,6 +55,7 @@ export default function BasicInfo({
                   variant="outlined"
                   error={error["firstName"] != null}
                   helperText={error["firstName"]}
+                  value={basicData["firstName"]}
                   onChange={(e) => {
                     basicData["firstName"] = e.target.value;
                     setBasicData({ ...basicData });
@@ -71,6 +72,7 @@ export default function BasicInfo({
                 <TextField
                   label="Middle and Last Name"
                   variant="outlined"
+                  value={basicData["lastName"]}
                   error={error["lastName"] != null}
                   helperText={error["lastName"]}
                   onChange={(e) => {
@@ -99,6 +101,7 @@ export default function BasicInfo({
                         error={error["dob"] != null}
                         helperText={error["dob"]}
                         fullWidth
+                        value={basicData["dob"]}
                         required
                       />
                     )}

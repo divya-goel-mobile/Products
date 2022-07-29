@@ -41,6 +41,7 @@ export default function ContactInfo({
                   required
                   fullWidth
                   spellCheck={false}
+                  value={contactData["email"]}
                   onBlur={(e) => {
                     validate(0, "email");
                   }}
@@ -63,6 +64,7 @@ export default function ContactInfo({
                   fullWidth
                   label="Mobile No."
                   variant="outlined"
+                  value={contactData["mobile"]}
                   onChange={(e) => {
                     contactData["mobile"] = e.target.value;
                     setContactData({ ...contactData });

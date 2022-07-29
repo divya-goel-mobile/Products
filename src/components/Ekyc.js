@@ -9,6 +9,7 @@ import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import FingerprintIcon from "@mui/icons-material/Fingerprint";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
+import style from "./styles/basic-info.module.css";
 
 import "./ekyc.scss";
 import ekyc from "./ekyc.module.css";
@@ -28,62 +29,58 @@ export default function Ekyc() {
             <h3 class=" fFoQAK">
               Provide your identity so that we can know you better
             </h3>
-            <form autoComplete="off" class="bcuijq">
-              <div class="text-question-container contactInfo">
-                <div class="question-form">
-                  <div class="input-container  text">
-                    <TextField
-                      label="Aadhar Number"
-                      variant="outlined"
-                      required
-                      fullWidth
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <FingerprintIcon />
-                          </InputAdornment>
-                        ),
-                        endAdornment: (
-                          <IconButton
-                            color="primary"
-                            aria-label="upload picture"
-                            component="label"
-                          >
-                            <input hidden accept="image/*" type="file" />
-                            <PhotoCamera />
-                          </IconButton>
-                        ),
-                      }}
-                    />
-                  </div>
-                  <div class="input-container  mt30 text">
-                    <TextField
-                      label="PAN Number"
-                      variant="outlined"
-                      required
-                      fullWidth
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <PermIdentityIcon />
-                          </InputAdornment>
-                        ),
-                        endAdornment: (
-                          <IconButton
-                            color="primary"
-                            aria-label="upload picture"
-                            component="label"
-                          >
-                            <input hidden accept="image/*" type="file" />
-                            <PhotoCamera />
-                          </IconButton>
-                        ),
-                      }}
-                    />
-                  </div>
-                </div>
+            <div className={style.basicDetailContainer}>
+              <div class="input-container  text">
+                <TextField
+                  label="Aadhar Number"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <FingerprintIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <input hidden accept="image/*" type="file" />
+                        <PhotoCamera />
+                      </IconButton>
+                    ),
+                  }}
+                />
               </div>
-            </form>
+              <div class="input-container  mt30 text">
+                <TextField
+                  label="PAN Number"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <PermIdentityIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="label"
+                      >
+                        <input hidden accept="image/*" type="file" />
+                        <PhotoCamera />
+                      </IconButton>
+                    ),
+                  }}
+                />
+              </div>
+            </div>
           </div>
 
           <div class="submit-wrap align-center">
