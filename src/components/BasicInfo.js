@@ -88,7 +88,7 @@ export default function BasicInfo({
                   <DatePicker
                     className="fullwidth"
                     label="Date of Birth"
-                    value={date}
+                    value={basicData["dob"]}
                     onChange={(newValue) => {
                       setDate(newValue);
                       basicData["dob"] = newValue;
