@@ -5,10 +5,9 @@ import ContactInfo from "./ContactInfo";
 import InsuranceQuestionnair from "./InsuranceQuestionnaire";
 import Plans from "./Plans";
 import Ekyc from "./Ekyc";
+import policyIssuance from "./PolicyIssuance";
+
 import { ReferenceName } from "../constants.js";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
 import img from "../assets/images/video-divider-white.png";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
@@ -22,6 +21,7 @@ import {
 } from "react-router-dom";
 
 import "./home.css";
+import PolicyIssuance from "./PolicyIssuance";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -37,6 +37,12 @@ export default function Home() {
   let [contactData, setContactData] = useState({
     email: "",
     mobile: "",
+    aadharContact: "",
+  });
+
+  let [ekycData, setEkycData] = useState({
+    aadharEkyc: "",
+    pan: "",
   });
 
   let [error, setError] = useState({
@@ -46,11 +52,16 @@ export default function Home() {
     gender: null,
     email: null,
     mobile: null,
+    aadharContact: null,
+    aadharEkyc: null,
+    pan: null,
   });
 
   function validate(step, keyParam) {
-    let data = basicData;
+    let data = ekycData;
     if (step == 0) data = contactData;
+    else if (step == 1) data = basicData;
+
     let isError = false;
 
     function validateField(key) {
@@ -75,8 +86,25 @@ export default function Home() {
       ) {
         error[key] = `Not a valid mobile  number`;
         isError = true;
+      } else if (
+        (key == "aadharContact" || key == "aadharEkyc") &&
+        !String(data[key])
+          .toLowerCase()
+          .match(/^\d{4}\d{4}\d{4}$/)
+      ) {
+        error[key] = `Not a valid aadhar  number`;
+        isError = true;
+      } else if (
+        key == "pan" &&
+        !String(data[key])
+          .toLowerCase()
+          .match(/^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/)
+      ) {
+        error[key] = `Not a valid PAN`;
+        isError = true;
       } else error[key] = null;
     }
+
     if (keyParam == undefined) {
       for (let key in data) {
         validateField(key);
@@ -141,7 +169,19 @@ export default function Home() {
             element={<InsuranceQuestionnair />}
           />
           <Route path="plans" element={<Plans />} />
-          <Route path="ekyc" element={<Ekyc />} />
+          <Route
+            path="ekyc"
+            element={
+              <Ekyc
+                ekycData={ekycData}
+                setEkycData={setEkycData}
+                error={error}
+                validate={validate}
+              />
+            }
+          />
+          <Route path="policyIssuance" element={<PolicyIssuance />} />
+
           <Route
             path=""
             element={<Navigate replace to="contactInfo" />}

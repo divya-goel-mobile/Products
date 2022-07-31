@@ -1,9 +1,10 @@
 import { React, useState } from "react";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import { HealthInsuranceQuestion } from "../constants";
+import { HealthInsuranceQuestion, marks } from "../constants";
 import "./home.css";
 import { useNavigate } from "react-router-dom";
+import Slider from "@mui/material/Slider";
 
 export default function InsuranceQuestionnair() {
   const navigate = useNavigate();
@@ -12,8 +13,9 @@ export default function InsuranceQuestionnair() {
   let [answer, setAnswer] = useState(["", "", ""]);
 
   function handleClick(opt) {
-    answer[step] = opt;
-    next();
+    if (opt == "no" && step == 0) {
+      setStep(step + 3);
+    } else next();
   }
 
   function next() {
@@ -22,6 +24,9 @@ export default function InsuranceQuestionnair() {
     } else {
       navigate("../plans");
     }
+  }
+  function valuetext(value) {
+    return `${value}°C`;
   }
 
   return (
@@ -52,22 +57,47 @@ export default function InsuranceQuestionnair() {
                           </div>
                         </div>
                       </div>
-                      <div class="EJVGF eqJfKL">
-                        <Button
-                          onClick={(e) => handleClick("no")}
-                          variant="outlined"
-                          class="DaHEG dGJoGc"
-                        >
-                          No
-                        </Button>
-                        <Button
-                          onClick={(e) => handleClick("yes")}
-                          variant="outlined"
-                          class="DaHEG dGJoGc"
-                        >
-                          Yes
-                        </Button>
-                      </div>
+                      {HealthInsuranceQuestion[step].type == 2 && (
+                        <Slider
+                          style={{ color: "red", marginTop: "20px" }}
+                          aria-label="Always visible"
+                          defaultValue={10}
+                          getAriaValueText={valuetext}
+                          valueLabelDisplay="auto"
+                          step={1}
+                          marks={marks}
+                        />
+                      )}
+
+                      {HealthInsuranceQuestion[step].type == 1 && (
+                        <div class="EJVGF eqJfKL">
+                          <Button
+                            onClick={(e) => handleClick("no")}
+                            variant="outlined"
+                            class="DaHEG dGJoGc"
+                          >
+                            No
+                          </Button>
+                          <Button
+                            onClick={(e) => handleClick("yes")}
+                            variant="outlined"
+                            class="DaHEG dGJoGc"
+                          >
+                            Yes
+                          </Button>
+                        </div>
+                      )}
+                      {HealthInsuranceQuestion[step].type == 2 && (
+                        <div class="EJVGF eqJfKL">
+                          <Button
+                            onClick={(e) => handleClick("yes")}
+                            variant="outlined"
+                            class="DaHEG dGJoGc"
+                          >
+                            Next
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

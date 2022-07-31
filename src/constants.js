@@ -10,27 +10,63 @@ const ReferenceName = {
   gender: "Gender",
   mobile: "Mobile number",
   email: "Email",
+  aadharContact: "Aadhar Number",
+  aadharEkyc: "Aadhar Number",
+  pan: "PAN",
 };
 
 const HealthInsuranceQuestion = [
   {
     heading: "Have you ever...",
     question: "Used any form of tobacco or nicotine products?",
+    type: 1,
+  },
+  {
+    heading: "Nowdays...",
+    question: "How many cigarettes do you smoke everyday?",
+    type: 2,
+  },
+  {
+    heading: "In your whole life...",
+    question: "How many years have you been smoking?",
+    type: 2,
   },
   {
     heading: "Have you been...",
     question:
       "diagnosed with having protein and/or microalbumin in your urine?",
+    type: 1,
   },
   {
     heading: "In the past 10 years...",
     question:
       "Have you been treated for any serious health conditions like heart disease, liver problems, HIV, cancer, or schizophrenia?",
+    type: 1,
   },
   {
     heading: "In the past 10 years..",
     question: "Have you used hard drugs, or frequently used marijuana?",
+    type: 1,
   },
 ];
 
-export { BasicDetailsHeadings, ReferenceName, HealthInsuranceQuestion };
+const marks = [
+  {
+    value: 0,
+    label: "0",
+  },
+  {
+    value: 20,
+    label: "10",
+  },
+  {
+    value: 60,
+    label: "30",
+  },
+  {
+    value: 100,
+    label: "50+",
+  },
+];
+
+export { BasicDetailsHeadings, ReferenceName, HealthInsuranceQuestion, marks };

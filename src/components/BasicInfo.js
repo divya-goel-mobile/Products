@@ -63,6 +63,9 @@ export default function BasicInfo({
                   onBlur={(e) => {
                     validate(1, "firstName");
                   }}
+                  inputProps={{
+                    autocomplete: "off",
+                  }}
                   required
                   fullWidth
                   spellCheck={false}
@@ -79,6 +82,9 @@ export default function BasicInfo({
                     basicData["lastName"] = e.target.value;
                     setBasicData({ ...basicData });
                   }}
+                  inputProps={{
+                    autocomplete: "off",
+                  }}
                   fullWidth
                   spellCheck={false}
                 />
@@ -94,6 +100,9 @@ export default function BasicInfo({
                       basicData["dob"] = newValue;
                       setBasicData({ ...basicData });
                       validate(1, "dob");
+                    }}
+                    inputProps={{
+                      autocomplete: "off",
                     }}
                     renderInput={(params) => (
                       <TextField

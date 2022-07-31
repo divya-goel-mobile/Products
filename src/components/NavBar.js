@@ -6,11 +6,7 @@ import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -41,19 +37,24 @@ export default function NavBar() {
     >
       <List>
         {[
-          "Home",
-          "FAQ",
-          "Claims",
-          "GiveBack",
-          "Claim",
-          "API",
-          "Start Over",
-        ].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+          { name: "Home", url: "/home" },
+          { name: "Products", url: "/products" },
+          { name: "About Us", url: "/aboutUs" },
+          { name: "Careers", url: "/career" },
+          { name: "Join the WaitList", url: "/joinWaitList" },
+          { name: "Support Prudentiul", url: "/about" },
+          { name: "Search", url: "/about" },
+          { name: "Sign Up", url: "/about" },
+          { name: "Login", url: "/about" },
+        ].map((item, index) => (
+          <div key={index}>
+            <ListItem disablePadding>
+              <ListItemButton component="a" href={item.url}>
+                <ListItemText primary={item.name} />
+              </ListItemButton>
+            </ListItem>
+            <Divider></Divider>
+          </div>
         ))}
       </List>
     </Box>

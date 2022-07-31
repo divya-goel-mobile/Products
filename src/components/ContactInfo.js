@@ -8,7 +8,11 @@ import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 import style from "./styles/basic-info.module.css";
 import OtpInputBox from "./common/OtpInput";
+import Divider from "@mui/material/Divider";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
+import FingerprintIcon from "@mui/icons-material/Fingerprint";
+import { mobileCheck } from "../utility/common";
+import { Drawer } from "@mui/material";
 
 export default function ContactInfo({
   contactData,
@@ -35,12 +39,13 @@ export default function ContactInfo({
   useEffect(() => {
     if (mobileOtp.length == 4) setMobileVerified(true);
   }, [mobileOtp]);
+  useEffect(() => {
+    if (aadharOtp.length == 4) setAadharVerified(true);
+  }, [aadharOtp]);
 
   let navigate = useNavigate();
   function next() {
-    if (isMobileVarified && isEmailVarified) {
-      navigate("../basicDeails");
-    }
+    navigate("../basicDeails");
   }
   return (
     <section class="chat-container">
@@ -64,10 +69,15 @@ export default function ContactInfo({
                   fullWidth
                   spellCheck={false}
                   value={contactData["email"]}
+                  inputProps={{
+                    autocomplete: "off",
+                  }}
                   onBlur={(e) => {
                     validate(0, "email");
                   }}
                   onChange={(e) => {
+                    setEmailOtpActive(false);
+                    setEmailVerified(false);
                     contactData["email"] = e.target.value;
                     setContactData({ ...contactData });
                   }}
@@ -98,9 +108,15 @@ export default function ContactInfo({
                     ),
                   }}
                 />
-                {isEmailOtpActive && !isEmailVarified && (
-                  <OtpInputBox callback={setEmailOtp}></OtpInputBox>
-                )}
+                {isEmailOtpActive &&
+                  !isEmailVarified &&
+                  (mobileCheck() ? (
+                    <Drawer open={true} anchor={"bottom"}>
+                      <OtpInputBox callback={setEmailOtp}></OtpInputBox>
+                    </Drawer>
+                  ) : (
+                    <OtpInputBox callback={setEmailOtp}></OtpInputBox>
+                  ))}
               </div>
               <div class="input-container  mt30 text">
                 <TextField
@@ -110,7 +126,9 @@ export default function ContactInfo({
                   variant="outlined"
                   value={contactData["mobile"]}
                   onChange={(e) => {
-                    contactData["mobile"] = e.target.value;
+                    setMobileOtpActive(false);
+                    setMobileVerified(false);
+                    contactData["mobile"] = e.target.value.slice(0, 10);
                     setContactData({ ...contactData });
                   }}
                   onBlur={(e) => {
@@ -123,6 +141,7 @@ export default function ContactInfo({
                   required
                   inputProps={{
                     maxlength: 13,
+                    autocomplete: "off",
                   }}
                   InputProps={{
                     startAdornment: (
@@ -153,9 +172,84 @@ export default function ContactInfo({
                     ),
                   }}
                 />
-                {isMobileOtpActive && !isMobileVarified && (
-                  <OtpInputBox callback={setMobileOtp}></OtpInputBox>
-                )}
+                {isMobileOtpActive &&
+                  !isMobileVarified &&
+                  (mobileCheck() ? (
+                    <Drawer open={true} anchor={"bottom"}>
+                      <OtpInputBox callback={setMobileOtp}></OtpInputBox>
+                    </Drawer>
+                  ) : (
+                    <OtpInputBox callback={set}></OtpInputBox>
+                  ))}
+              </div>
+
+              <Divider
+                sx={{ color: "rgba(0, 0, 0, 0.6)", "margin-top": "30px" }}
+              >
+                OR
+              </Divider>
+
+              <div class="input-container  mt30 text">
+                <TextField
+                  fullWidth
+                  label="Aadhar Number"
+                  variant="outlined"
+                  value={contactData["aadharContact"]}
+                  onChange={(e) => {
+                    setAadharOtpActive(false);
+                    setAadharVerified(false);
+                    contactData["aadharContact"] = e.target.value.slice(0, 12);
+                    setContactData({ ...contactData });
+                  }}
+                  onBlur={(e) => {
+                    validate(0, "aadharContact");
+                  }}
+                  error={error["aadharContact"] != null}
+                  helperText={error["aadharContact"]}
+                  spellCheck={false}
+                  type="number"
+                  required
+                  inputProps={{
+                    maxlength: 13,
+                    autocomplete: "off",
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <FingerprintIcon />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        {!isAadharVerified ? (
+                          <Button
+                            onClick={() => {
+                              if (validate(0, "aadharContact"))
+                                setAadharOtpActive(true);
+                            }}
+                            sx={{
+                              fontSize: "12px",
+                              color: "rgba(0, 0, 0, 0.6)",
+                            }}
+                          >
+                            verify
+                          </Button>
+                        ) : (
+                          <CheckCircleRoundedIcon sx={{ color: "green" }} />
+                        )}
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                {isAadharOtpActive &&
+                  !isAadharVerified &&
+                  (mobileCheck() ? (
+                    <Drawer open={true} anchor={"bottom"}>
+                      <OtpInputBox callback={setAadharOtp}></OtpInputBox>
+                    </Drawer>
+                  ) : (
+                    <OtpInputBox callback={setAadharOtp}></OtpInputBox>
+                  ))}
               </div>
             </div>
           </div>
@@ -164,6 +258,9 @@ export default function ContactInfo({
               variant="contained"
               onClick={next}
               color="error"
+              disabled={
+                !((isMobileVarified && isEmailVarified) || isAadharVerified)
+              }
               endIcon={<SendIcon />}
             >
               Next

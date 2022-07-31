@@ -15,11 +15,11 @@ import "./ekyc.scss";
 import ekyc from "./ekyc.module.css";
 import "./home.css";
 
-export default function Ekyc() {
+export default function Ekyc({ ekycData, setEkycData, error, validate }) {
   const navigate = useNavigate();
 
   function next() {
-    // navigate("../plans");
+    if (validate(2)) navigate("../policyIssuance");
   }
   return (
     <section class="chat-container">
@@ -36,6 +36,20 @@ export default function Ekyc() {
                   variant="outlined"
                   required
                   fullWidth
+                  type="number"
+                  value={ekycData["aadharEkyc"]}
+                  onBlur={(e) => {
+                    validate(2, "aadharEkyc");
+                  }}
+                  inputProps={{
+                    autocomplete: "off",
+                  }}
+                  onChange={(e) => {
+                    ekycData["aadharEkyc"] = e.target.value.slice(0, 12);
+                    setEkycData({ ...ekycData });
+                  }}
+                  error={error["aadharEkyc"] != null}
+                  helperText={error["aadharEkyc"]}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -48,7 +62,12 @@ export default function Ekyc() {
                         aria-label="upload picture"
                         component="label"
                       >
-                        <input hidden accept="image/*" type="file" />
+                        <input
+                          hidden
+                          accept="image/*"
+                          capture="environment"
+                          type="file"
+                        />
                         <PhotoCamera />
                       </IconButton>
                     ),
@@ -61,6 +80,20 @@ export default function Ekyc() {
                   variant="outlined"
                   required
                   fullWidth
+                  value={ekycData["pan"]}
+                  spellCheck={false}
+                  inputProps={{
+                    autocomplete: "off",
+                  }}
+                  onChange={(e) => {
+                    ekycData["pan"] = e.target.value.slice(0, 10).toUpperCase();
+                    setEkycData({ ...ekycData });
+                  }}
+                  onBlur={(e) => {
+                    validate(2, "pan");
+                  }}
+                  error={error["pan"] != null}
+                  helperText={error["pan"]}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -73,7 +106,12 @@ export default function Ekyc() {
                         aria-label="upload picture"
                         component="label"
                       >
-                        <input hidden accept="image/*" type="file" />
+                        <input
+                          hidden
+                          accept="image/*"
+                          type="file"
+                          capture="environment"
+                        />
                         <PhotoCamera />
                       </IconButton>
                     ),
