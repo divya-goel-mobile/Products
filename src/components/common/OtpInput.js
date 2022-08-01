@@ -13,9 +13,11 @@ export default function OtpInputBox({ callback }) {
           <Grid item xs>
             <OtpInput
               value={otp}
+              shouldAutoFocus={true}
               onChange={(otp) => {
+                debugger;
                 setOtp(otp);
-                callback(otp);
+                if (otp.length == 4) callback(otp);
               }}
               numInputs={4}
               inputStyle={{

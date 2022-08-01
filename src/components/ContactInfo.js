@@ -224,6 +224,7 @@ export default function ContactInfo({
                         {!isAadharVerified ? (
                           <Button
                             onClick={() => {
+                              debugger;
                               if (validate(0, "aadharContact"))
                                 setAadharOtpActive(true);
                             }}

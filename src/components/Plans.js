@@ -23,9 +23,7 @@ import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
 import "./home.css";
 import "./styles/plans.module.css";
 
-export default function Plans() {
-  let [plan, setPlan] = useState("");
-  let [amount, setAmount] = useState(null);
+export default function Plans({ plan, amount, setPlan, setAmount }) {
   let [planBenefits, setPlanBenefits] = useState([]);
 
   let navigate = useNavigate();
@@ -170,7 +168,7 @@ export default function Plans() {
             spacing={5}
           >
             <Grid
-              onClick={() => selectCard("Silver", "1,500")}
+              onClick={() => selectCard("Silver", "1500")}
               xs={4}
               item
               className="plan-item"
@@ -183,7 +181,7 @@ export default function Plans() {
             </Grid>
             <Grid
               xs={8}
-              onClick={() => selectCard("Silver", "1,500")}
+              onClick={() => selectCard("Silver", "1500")}
               item
               className="combo-label"
             >
@@ -203,7 +201,7 @@ export default function Plans() {
             )}
 
             <Grid
-              onClick={() => selectCard("Gold", "2,500")}
+              onClick={() => selectCard("Gold", "2500")}
               xs={4}
               item
               className="plan-item"
@@ -216,7 +214,7 @@ export default function Plans() {
             </Grid>
 
             <Grid
-              onClick={() => selectCard("Gold", "2,500")}
+              onClick={() => selectCard("Gold", "2500")}
               xs={8}
               item
               className="combo-label"
@@ -238,7 +236,7 @@ export default function Plans() {
             )}
 
             <Grid
-              onClick={() => selectCard("Diamond", "3,500")}
+              onClick={() => selectCard("Diamond", "3500")}
               xs={4}
               item
               className="plan-item"
@@ -251,7 +249,7 @@ export default function Plans() {
             </Grid>
 
             <Grid
-              onClick={() => selectCard("Diamond", "3,500")}
+              onClick={() => selectCard("Diamond", "3500")}
               xs={8}
               item
               className="combo-label"

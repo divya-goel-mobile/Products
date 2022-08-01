@@ -15,16 +15,76 @@ import "./ekyc.scss";
 import ekyc from "./ekyc.module.css";
 import "./home.css";
 
-export default function Ekyc({ ekycData, setEkycData, error, validate }) {
-  let [aadhar, setAadhar] = useState("");
-  let [pan, setPan] = useState("");
-  let [aadharUpload, setAadharUpload] = useState("");
-  let [panUpload, setPanUpload] = useState("");
+export default function Ekyc({
+  ekycData,
+  setEkycData,
+  error,
+  validate,
+  amount,
+}) {
+  var formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "INR",
+
+    // These options are needed to round to whole numbers if that's what you want.
+    minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+  });
+
+  const loadScript = (src) => {
+    return new Promise((resovle) => {
+      const script = document.createElement("script");
+      script.src = src;
+
+      script.onload = () => {
+        resovle(true);
+      };
+
+      script.onerror = () => {
+        resovle(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async (amount) => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_0AWs9BOIkdhoVj",
+      currency: "INR",
+      amount: amount * 100,
+      name: "Prudential Health Insurance",
+      description: "Thanks for purchasing",
+      image:
+        "https://www.prudentialplc.com/~/media/Images/P/Prudential-V13/logo/updated-logo.png?h=200&iar=0&w=200",
+      theme: {
+        color: "#ed1b2e",
+      },
+
+      handler: function (response) {
+        navigate("../policyIssuance");
+      },
+      prefill: {
+        name: "Prudential Health Insurance",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
 
   const navigate = useNavigate();
 
   function next() {
-    if (validate(2)) navigate("../policyIssuance");
+    if (validate(2)) displayRazorpay(amount);
   }
   return (
     <section class="chat-container">
@@ -51,11 +111,16 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
                   }}
                   onChange={(e) => {
                     ekycData["aadharEkyc"] = e.target.value.slice(0, 12);
-                    setAadhar(ekycData["aadhar"]);
                     setEkycData({ ...ekycData });
                   }}
                   error={error["aadharEkyc"] != null}
-                  helperText={error["aadharEkyc"]}
+                  helperText={
+                    error["aadharEkyc"]
+                      ? error["aadharEkyc"]
+                      : ekycData["aadharUpload"]
+                      ? `${ekycData["aadharUpload"]} uploaded successfully`
+                      : ""
+                  }
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -70,9 +135,11 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
                       >
                         <input
                           hidden
-                          onChange={() => setAadharUpload(true)}
-                          accept="image/*"
-                          capture="environment"
+                          onChange={(e) => {
+                            ekycData["aadharUpload"] = e.target.files[0].name;
+                            setEkycData({ ...ekycData });
+                          }}
+                          accept="image/*,pdf;capture=camera"
                           type="file"
                         />
                         <PhotoCamera />
@@ -94,14 +161,19 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
                   }}
                   onChange={(e) => {
                     ekycData["pan"] = e.target.value.slice(0, 10).toUpperCase();
-                    setPan(ekycData["pan"]);
                     setEkycData({ ...ekycData });
                   }}
                   onBlur={(e) => {
                     validate(2, "pan");
                   }}
                   error={error["pan"] != null}
-                  helperText={error["pan"]}
+                  helperText={
+                    error["pan"]
+                      ? error["pan"]
+                      : ekycData["panUpload"]
+                      ? `${ekycData["panUpload"]} uploaded successfully`
+                      : ""
+                  }
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -116,10 +188,12 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
                       >
                         <input
                           hidden
-                          onChange={() => setPanUpload(true)}
-                          accept="image/*"
+                          onChange={(e) => {
+                            ekycData["panUpload"] = e.target.files[0].name;
+                            setEkycData({ ...ekycData });
+                          }}
+                          accept="image/*, pdf;capture=camera"
                           type="file"
-                          capture="environment"
                         />
                         <PhotoCamera />
                       </IconButton>
@@ -133,7 +207,12 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
           <div class="submit-wrap align-center">
             <Button
               disabled={
-                !(pan != "" && aadhar != "" && aadharUpload && panUpload)
+                !(
+                  ekycData["pan"] != "" &&
+                  ekycData["aadharEkyc"] != "" &&
+                  ekycData["aadharUpload"] != "" &&
+                  ekycData["pan"] != ""
+                )
               }
               onClick={next}
               variant="contained"

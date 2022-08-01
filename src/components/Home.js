@@ -11,14 +11,7 @@ import { ReferenceName } from "../constants.js";
 import img from "../assets/images/video-divider-white.png";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import "./home.css";
 import PolicyIssuance from "./PolicyIssuance";
@@ -43,7 +36,11 @@ export default function Home() {
   let [ekycData, setEkycData] = useState({
     aadharEkyc: "",
     pan: "",
+    aadharUpload: "",
+    panUpload: "",
   });
+  let [plan, setPlan] = useState("");
+  let [amount, setAmount] = useState(null);
 
   let [error, setError] = useState({
     firstName: null,
@@ -168,7 +165,17 @@ export default function Home() {
             path="insuranceQuestionnaire"
             element={<InsuranceQuestionnair />}
           />
-          <Route path="plans" element={<Plans />} />
+          <Route
+            path="plans"
+            element={
+              <Plans
+                plan={plan}
+                setPlan={setPlan}
+                amount={amount}
+                setAmount={setAmount}
+              />
+            }
+          />
           <Route
             path="ekyc"
             element={
@@ -177,6 +184,7 @@ export default function Home() {
                 setEkycData={setEkycData}
                 error={error}
                 validate={validate}
+                amount={amount}
               />
             }
           />
