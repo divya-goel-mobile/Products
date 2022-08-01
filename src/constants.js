@@ -22,12 +22,12 @@ const HealthInsuranceQuestion = [
     type: 1,
   },
   {
-    heading: "Nowdays...",
+    heading: "",
     question: "How many cigarettes do you smoke everyday?",
     type: 2,
   },
   {
-    heading: "In your whole life...",
+    heading: "",
     question: "How many years have you been smoking?",
     type: 2,
   },

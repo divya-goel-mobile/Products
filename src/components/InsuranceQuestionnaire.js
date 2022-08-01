@@ -48,9 +48,11 @@ export default function InsuranceQuestionnair() {
                       <div height="auto,57" class="ifOqJt kIFXiF">
                         <div timeout="400" class="flgDQF" reversed="">
                           <div class="cGIqAI gLeraX enter-done">
-                            <div class="cDIwQB XAgdT">
-                              {HealthInsuranceQuestion[step].heading}
-                            </div>
+                            {HealthInsuranceQuestion[step].heading != "" && (
+                              <div class="cDIwQB XAgdT">
+                                {HealthInsuranceQuestion[step].heading}
+                              </div>
+                            )}
                             <div class="cDIwQB gQIPbk">
                               {HealthInsuranceQuestion[step].question}
                             </div>

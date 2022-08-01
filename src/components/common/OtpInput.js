@@ -15,7 +15,6 @@ export default function OtpInputBox({ callback }) {
               value={otp}
               shouldAutoFocus={true}
               onChange={(otp) => {
-                debugger;
                 setOtp(otp);
                 if (otp.length == 4) callback(otp);
               }}

@@ -20,6 +20,7 @@ export default function ContactInfo({
   error,
   validate,
 }) {
+  console.log("rerender");
   let [isEmailOtpActive, setEmailOtpActive] = useState(false);
   let [isMobileOtpActive, setMobileOtpActive] = useState(false);
   let [isAadharOtpActive, setAadharOtpActive] = useState(false);
@@ -111,9 +112,10 @@ export default function ContactInfo({
                 {isEmailOtpActive &&
                   !isEmailVarified &&
                   (mobileCheck() ? (
-                    <Drawer open={true} anchor={"bottom"}>
-                      <OtpInputBox callback={setEmailOtp}></OtpInputBox>
-                    </Drawer>
+                    // <Drawer open={true} anchor={"bottom"}>
+                    //   <OtpInputBox callback={setEmailOtp}></OtpInputBox>
+                    // </Drawer>
+                    <OtpInputBox callback={setEmailOtp}></OtpInputBox>
                   ) : (
                     <OtpInputBox callback={setEmailOtp}></OtpInputBox>
                   ))}
@@ -175,9 +177,10 @@ export default function ContactInfo({
                 {isMobileOtpActive &&
                   !isMobileVarified &&
                   (mobileCheck() ? (
-                    <Drawer open={true} anchor={"bottom"}>
-                      <OtpInputBox callback={setMobileOtp}></OtpInputBox>
-                    </Drawer>
+                    // <Drawer open={true} anchor={"bottom"}>
+                    //   <OtpInputBox callback={setMobileOtp}></OtpInputBox>
+                    // </Drawer>
+                    <OtpInputBox callback={setMobileOtp}></OtpInputBox>
                   ) : (
                     <OtpInputBox callback={setMobileOtp}></OtpInputBox>
                   ))}
@@ -224,7 +227,6 @@ export default function ContactInfo({
                         {!isAadharVerified ? (
                           <Button
                             onClick={() => {
-                              debugger;
                               if (validate(0, "aadharContact"))
                                 setAadharOtpActive(true);
                             }}
@@ -245,9 +247,14 @@ export default function ContactInfo({
                 {isAadharOtpActive &&
                   !isAadharVerified &&
                   (mobileCheck() ? (
-                    <Drawer open={true} anchor={"bottom"}>
-                      <OtpInputBox callback={setAadharOtp}></OtpInputBox>
-                    </Drawer>
+                    // <Drawer
+                    //   style={{ height: "200px" }}
+                    //   open={true}
+                    //   anchor={"bottom"}
+                    // >
+                    //   <OtpInputBox callback={setAadharOtp}></OtpInputBox>
+                    // </Drawer>
+                    <OtpInputBox callback={setAadharOtp}></OtpInputBox>
                   ) : (
                     <OtpInputBox callback={setAadharOtp}></OtpInputBox>
                   ))}
