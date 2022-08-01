@@ -16,6 +16,11 @@ import ekyc from "./ekyc.module.css";
 import "./home.css";
 
 export default function Ekyc({ ekycData, setEkycData, error, validate }) {
+  let [aadhar, setAadhar] = useState("");
+  let [pan, setPan] = useState("");
+  let [aadharUpload, setAadharUpload] = useState("");
+  let [panUpload, setPanUpload] = useState("");
+
   const navigate = useNavigate();
 
   function next() {
@@ -46,6 +51,7 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
                   }}
                   onChange={(e) => {
                     ekycData["aadharEkyc"] = e.target.value.slice(0, 12);
+                    setAadhar(ekycData["aadhar"]);
                     setEkycData({ ...ekycData });
                   }}
                   error={error["aadharEkyc"] != null}
@@ -64,6 +70,7 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
                       >
                         <input
                           hidden
+                          onChange={() => setAadharUpload(true)}
                           accept="image/*"
                           capture="environment"
                           type="file"
@@ -87,6 +94,7 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
                   }}
                   onChange={(e) => {
                     ekycData["pan"] = e.target.value.slice(0, 10).toUpperCase();
+                    setPan(ekycData["pan"]);
                     setEkycData({ ...ekycData });
                   }}
                   onBlur={(e) => {
@@ -108,6 +116,7 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
                       >
                         <input
                           hidden
+                          onChange={() => setPanUpload(true)}
                           accept="image/*"
                           type="file"
                           capture="environment"
@@ -123,6 +132,9 @@ export default function Ekyc({ ekycData, setEkycData, error, validate }) {
 
           <div class="submit-wrap align-center">
             <Button
+              disabled={
+                !(pan != "" && aadhar != "" && aadharUpload && panUpload)
+              }
               onClick={next}
               variant="contained"
               color="error"

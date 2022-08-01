@@ -179,7 +179,7 @@ export default function ContactInfo({
                       <OtpInputBox callback={setMobileOtp}></OtpInputBox>
                     </Drawer>
                   ) : (
-                    <OtpInputBox callback={set}></OtpInputBox>
+                    <OtpInputBox callback={setMobileOtp}></OtpInputBox>
                   ))}
               </div>
 
