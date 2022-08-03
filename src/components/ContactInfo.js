@@ -13,6 +13,7 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import FingerprintIcon from "@mui/icons-material/Fingerprint";
 import { mobileCheck } from "../utility/common";
 import { Drawer } from "@mui/material";
+import { firebase, auth } from "../firebase";
 
 export default function ContactInfo({
   contactData,
@@ -20,7 +21,6 @@ export default function ContactInfo({
   error,
   validate,
 }) {
-  console.log("rerender");
   let [isEmailOtpActive, setEmailOtpActive] = useState(false);
   let [isMobileOtpActive, setMobileOtpActive] = useState(false);
   let [isAadharOtpActive, setAadharOtpActive] = useState(false);
@@ -33,15 +33,53 @@ export default function ContactInfo({
   let [mobileOtp, setMobileOtp] = useState("");
   let [aadharOtp, setAadharOtp] = useState("");
 
-  useEffect(() => {
-    if (emailOtp.length == 4) setEmailVerified(true);
-  }, [emailOtp]);
+  const [payload, setPayload] = useState(null);
+
+  const [final, setfinal] = useState(null);
 
   useEffect(() => {
-    if (mobileOtp.length == 4) setMobileVerified(true);
+    if (emailOtp.length == 6) setEmailVerified(true);
+  }, [emailOtp]);
+
+  // useEffect(() => {
+  //   const mojoauth = new MojoAuth("test-70d678ab-4b55-4445-9b2e-040ba352a6ce", {
+  //     source: [{ type: "phone", feature: "otp" }],
+  //   });
+  //   mojoauth.signIn().then((payload) => {
+  //     setPayload(payload);
+  //     document.getElementById("mojoauth-passwordless-form").remove();
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    if (final == "") {
+      let verify = new firebase.auth.RecaptchaVerifier("recaptcha-container");
+      auth
+        .signInWithPhoneNumber("+91" + contactData["mobile"], verify)
+        .then((result) => {
+          setfinal(result);
+          setMobileOtpActive(true);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  }, [final]);
+
+  useEffect(() => {
+    if (mobileOtp.length == 6) {
+      final
+        .confirm(mobileOtp)
+        .then((result) => {
+          setMobileVerified(true);
+        })
+        .catch((err) => {
+          alert("Wrong code");
+        });
+    }
   }, [mobileOtp]);
   useEffect(() => {
-    if (aadharOtp.length == 4) setAadharVerified(true);
+    if (aadharOtp.length == 6) setAadharVerified(true);
   }, [aadharOtp]);
 
   let navigate = useNavigate();
@@ -157,8 +195,9 @@ export default function ContactInfo({
                         {!isMobileVarified ? (
                           <Button
                             onClick={() => {
-                              if (validate(0, "mobile"))
-                                setMobileOtpActive(true);
+                              if (validate(0, "mobile")) {
+                                setfinal("");
+                              }
                             }}
                             sx={{
                               fontSize: "12px",
@@ -185,6 +224,12 @@ export default function ContactInfo({
                     <OtpInputBox callback={setMobileOtp}></OtpInputBox>
                   ))}
               </div>
+              {final == "" && (
+                <div
+                  style={{ marginTop: "30px" }}
+                  id="recaptcha-container"
+                ></div>
+              )}
 
               <Divider
                 sx={{ color: "rgba(0, 0, 0, 0.6)", "margin-top": "30px" }}

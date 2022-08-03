@@ -16,9 +16,9 @@ export default function OtpInputBox({ callback }) {
               shouldAutoFocus={true}
               onChange={(otp) => {
                 setOtp(otp);
-                if (otp.length == 4) callback(otp);
+                if (otp.length == 6) callback(otp);
               }}
-              numInputs={4}
+              numInputs={6}
               inputStyle={{
                 fontSize: "16px",
                 width: "24px",

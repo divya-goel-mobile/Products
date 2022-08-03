@@ -54,9 +54,11 @@
     "@mui/icons-material": "latest",
     "@mui/material": "^5.9.1",
     "@mui/x-date-pickers": "^5.0.0-beta.1",
+    "firebase": "^9.9.1",
     "moment": "^2.29.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-firebase-hooks": "^5.0.3",
     "react-router-dom": "^6.3.0",
     "single-spa-react": "^4.3.1"
   }
