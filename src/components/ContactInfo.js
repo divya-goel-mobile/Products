@@ -1,4 +1,5 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Email from "@mui/icons-material/Email";
@@ -12,8 +13,9 @@ import Divider from "@mui/material/Divider";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import FingerprintIcon from "@mui/icons-material/Fingerprint";
 import { mobileCheck } from "../utility/common";
-import { Drawer } from "@mui/material";
 import { firebase, auth } from "../firebase";
+// import Claims from "home/Claims";
+// const PurposeDetail = React.lazy(() => import("home/PurposeDetail"));
 
 export default function ContactInfo({
   contactData,

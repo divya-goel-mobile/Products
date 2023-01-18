@@ -8,9 +8,6 @@ const BundleAnalyzerPlugin =
 const CompressionPlugin = require("compression-webpack-plugin");
 const path = require("path");
 
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const CopyPlugin = require("copy-webpack-plugin");
-
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "app",
@@ -20,6 +17,10 @@ module.exports = (webpackConfigEnv, argv) => {
   });
   //console.log(defaultConfig);
   return merge(defaultConfig, {
+    devtool: false,
+    output: {
+      clean: true,
+    },
     module: {
       rules: [
         // CSS rules
@@ -28,8 +29,20 @@ module.exports = (webpackConfigEnv, argv) => {
           use: ["style-loader", "css-loader", "sass-loader"],
         },
       ],
+      plugins: [
+        new ModuleFederationPlugin({
+          name: "products",
+          library: { type: "var", name: "products" },
+          filename: "remoteEntry.js",
+          remotes: {
+            home: "home",
+          },
+        }),
+        // new CopyPlugin([{ from: "public", to: "." }]),
+      ],
     },
     optimization: {
+      minimize: true,
       splitChunks: {
         chunks: "all",
         minSize: 1000,
@@ -39,5 +52,6 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       },
     },
+    plugins: [new BundleAnalyzerPlugin()],
   });
 };
